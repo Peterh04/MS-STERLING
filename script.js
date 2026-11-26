@@ -155,11 +155,21 @@
     },
   ];
 
-  const card = (service) => `
-    <a class="service-card reveal" href="#service/${service.slug}" aria-label="Explore ${service.name}">
-      <div class="service-card-image"><img loading="lazy" src="${service.image}" alt="${service.name} service visual"></div>
-      <div class="service-card-title"><span>${service.name}</span><span>↗</span></div>
+  const card = (service) => {
+    const destination =
+      service.slug === "property" ? "#properties" : `#service/${service.slug}`;
+
+    return `
+    <a class="service-card reveal" href="${destination}" aria-label="Explore ${service.name}">
+      <div class="service-card-image">
+        <img loading="lazy" src="${service.image}" alt="${service.name} service visual">
+      </div>
+      <div class="service-card-title">
+        <span>${service.name}</span>
+        <span>↗</span>
+      </div>
     </a>`;
+  };
 
   document.querySelector("#home-service-grid").innerHTML = services
     .map(card)
